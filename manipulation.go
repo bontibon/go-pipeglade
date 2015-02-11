@@ -77,6 +77,7 @@ func (ui *UI) ScrollToCursor(widget string) {
 //  GtkToggleButton
 //  GtkCheckButton
 //  GtkExpander
+//  GtkFrame
 func (ui *UI) SetLabel(widget, text string) {
 	ui.do(fmt.Sprintf("%s:set_label %s", widget, text))
 }
@@ -198,6 +199,28 @@ func (ui *UI) SetColor(widget string, color color.Color) {
 	b >>= 8
 	a >>= 8
 	ui.do(fmt.Sprintf("%s:set_color rgba(%d,%d,%d,%d)", widget, r&0xFF, g&0xFF, b&0xFF, a&0xFF))
+}
+
+// Widgets:
+//  Any Widget
+func (ui *UI) OverrideColor(widget string, color color.Color) {
+	r, g, b, a := color.RGBA()
+	r >>= 8
+	g >>= 8
+	b >>= 8
+	a >>= 8
+	ui.do(fmt.Sprintf("%s:override_color rgba(%d,%d,%d,%d)", widget, r&0xFF, g&0xFF, b&0xFF, a&0xFF))
+}
+
+// Widgets:
+//  Any Widget
+func (ui *UI) OverrideBackgroundColor(widget string, color color.Color) {
+	r, g, b, a := color.RGBA()
+	r >>= 8
+	g >>= 8
+	b >>= 8
+	a >>= 8
+	ui.do(fmt.Sprintf("%s:override_background_color rgba(%d,%d,%d,%d)", widget, r&0xFF, g&0xFF, b&0xFF, a&0xFF))
 }
 
 // Widgets:
