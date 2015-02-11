@@ -76,6 +76,7 @@ func (ui *UI) ScrollToCursor(widget string) {
 //  GtkButton
 //  GtkToggleButton
 //  GtkCheckButton
+//  GtkExpander
 func (ui *UI) SetLabel(widget, text string) {
 	ui.do(fmt.Sprintf("%s:set_label %s", widget, text))
 }
@@ -278,4 +279,14 @@ func (ui *UI) ForceCB(widget string) {
 //  GtkNotebook
 func (ui *UI) SetCurrentPage(widget string, page int) {
 	ui.do(fmt.Sprintf("%s:set_current_page %d", widget, page))
+}
+
+// Widgets:
+//  GtkExpander
+func (ui *UI) SetExpanded(widget string, expanded bool) {
+	var expandedInt int
+	if expanded {
+		expandedInt = 1
+	}
+	ui.do(fmt.Sprintf("%s:set_expanded %d", widget, expandedInt))
 }
