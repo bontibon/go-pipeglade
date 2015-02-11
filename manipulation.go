@@ -236,6 +236,12 @@ func (ui *UI) SetFontName(widget, font string) {
 }
 
 // Widgets:
+//  Any Widget
+func (ui *UI) OverrideFont(widget, font string) {
+	ui.do(fmt.Sprintf("%s:override_font %s", widget, font))
+}
+
+// Widgets:
 //  GtkFileChooserButton
 //  GtkFileChooserDialog
 func (ui *UI) SetFileName(widget, path string) {
