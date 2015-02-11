@@ -273,3 +273,9 @@ func (ui *UI) SetVisible(widget string, visible bool) {
 func (ui *UI) ForceCB(widget string) {
 	ui.do(fmt.Sprintf("%s:force_cb", widget))
 }
+
+// Widgets:
+//  GtkNotebook
+func (ui *UI) SetCurrentPage(widget string, page int) {
+	ui.do(fmt.Sprintf("%s:set_current_page %d", widget, page))
+}
