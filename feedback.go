@@ -19,21 +19,21 @@ type Event struct {
 	Data   string
 }
 
-func (e Event) IsQuit() bool {
+func (e *Event) IsQuit() bool {
 	return e.Data == eventQuit
 }
 
-func (e Event) ToBool() bool {
+func (e *Event) ToBool() bool {
 	val, _ := strconv.ParseBool(e.Data)
 	return val
 }
 
-func (e Event) ToFloat() float32 {
+func (e *Event) ToFloat() float32 {
 	val, _ := strconv.ParseFloat(e.Data, 32)
 	return float32(val)
 }
 
-func (e Event) ToColor() color.Color {
+func (e *Event) ToColor() color.Color {
 	var c color.RGBA
 	var a float32
 	_, err := fmt.Sscanf(e.Data, "rgba(%d,%d,%d,%f)", &c.R, &c.G, &c.B, &a)
@@ -47,7 +47,7 @@ func (e Event) ToColor() color.Color {
 	return c
 }
 
-func (e Event) ToTime(loc *time.Location) (t time.Time) {
+func (e *Event) ToTime(loc *time.Location) (t time.Time) {
 	var y, m, d int
 	_, err := fmt.Sscanf(e.Data, "%d-%d-%d", &y, &m, &d)
 	if err == nil {
@@ -56,7 +56,7 @@ func (e Event) ToTime(loc *time.Location) (t time.Time) {
 	return
 }
 
-func (e Event) ToTableCell() (row, column int, cell string) {
+func (e *Event) ToTableCell() (row, column int, cell string) {
 	values := strings.SplitN(e.Data, " ", 3)
 	if len(values) == 3 {
 		row, _ = strconv.Atoi(values[0])
